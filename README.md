@@ -1,6 +1,6 @@
 # CESIL
 
-A [CESIL](https://en.wikipedia.org/wiki/CESIL) interpreter written in Python, intended as a "Language Preservation" project.
+A [CESIL](https://cesil.org) interpreter written in Python, intended as a "Language Preservation" project.
 
 CESIL is the Computer Education in Schools Instruction Language.  It was developed as an introductory instructional language, targeted at British secondary school students (ages 11 to 16).  It was developed by [International Computers Limited](https://en.wikipedia.org/wiki/International_Computers_Limited) ([ICL](https://en.wikipedia.org/wiki/International_Computers_Limited)), a sort of "British version of IBM", as part of the "Computer Education in Schools" (CES) project, and was introduced in 1974.
 
@@ -16,9 +16,9 @@ There are two modes of operation:
 
 "Plus" mode is enabled by use of the `-p` or `--plus` options; the default behavior only observes the original CESIL instructions.  In "Plus" mode, the following additional features/instructions are available:
 
-- A **stack** capability, and the instructions to support its use: `PUSH` and `POP` (see "[Stack_test.ces](https://github.com/idunmore/CESIL/blob/master/examples/Stack_test.ces)").
+- A **stack** capability, and the instructions to support its use: `PUSH` and `POP` (see "[Stack_test.ces](https://github.com/idunmore/cesil/blob/master/examples/Stack_test.ces)").
 
- - **Subroutine** support; expands the simple branch/jump capabilities of CESIL with the ability to jump to, or "call" a new point of execution, and then *return* to the original point of execution (see "[Sub_test.ces](https://github.com/idunmore/CESIL/blob/master/examples/Sub_test.ces)").
+ - **Subroutine** support; expands the simple branch/jump capabilities of CESIL with the ability to jump to, or "call" a new point of execution, and then *return* to the original point of execution (see "[Sub_test.ces](https://github.com/idunmore/cesil/blob/master/examples/Sub_test.ces)").
 
    Adds the instructions: `JUMPSR`, `JSIZERO`, `JSINEG` and `RETURN`.
 
@@ -35,8 +35,8 @@ There are two modes of operation:
 
  ## Installing
 
-* Install Python 3.11.1 or later (may work with earlier versions, provided they have built-in type-hint support, but not tested).
-* Clone the repository, **or** download [src/CESIL.py](https://github.com/idunmore/CESIL/blob/master/src/CESIL.py) and [requirements.txt](https://github.com/idunmore/CESIL/blob/master/requirements.txt)
+* Install Python 3.13.3 or later (may work with earlier versions, provided they have built-in type-hint support, but not tested).
+* Clone the repository, **or** download [legacy/cesil.py](https://github.com/idunmore/cesil/blob/master/legacy/cesil.py) and [requirements.txt](https://github.com/idunmore/cesil/blob/master/legacy/requirements.txt)
 * Run the following command (in the directory you downloaded the above into):
 
 > 
@@ -44,11 +44,11 @@ There are two modes of operation:
     
 Run:
 
-    python3 CESIL.py --version
+    python3 cesil.py --version
 
 You should see something like:
 
-    CESIL.py, version 0.9.3
+    cesil.py, version 0.9.4
 
 If not, either you don't have Python installed correctly (most likely this is a path issue) or the dependencies (per requirements.txt) did not install.
 
@@ -56,17 +56,17 @@ If not, either you don't have Python installed correctly (most likely this is a 
 
 Usage is simple:
 
-    python3 CESIL.py filename
+    python3 cesil.py filename
 
 This will run the CESIL program contained in the file "filename".  Any output will be displayed on the console.
 
 For full usage details, enter:
 
-    python3 CESIL.py --help
+    python3 cesil.py --help
 
 That will display the complete built-in help, along with options:
 
-    Usage: CESIL.py [OPTIONS] SOURCE_FILE
+    Usage: cesil.py [OPTIONS] SOURCE_FILE
 
       CESILPlus - CESIL Interpreter (w/ optional language extentions).
 
@@ -112,7 +112,7 @@ Text and Card modes (set via the `-s`, `--source` option) determine whether stri
 
 Text mode only assumes valid whitespace (spaces or tabs) separation between `labels`, `instructions` and `operands`.  The number of spaces/tabs doesn't matter.  
 
-In Card mode, there are fixed-width columns for `labels` and `instructions` (8 characters each), and then `operands` can be as wide as the remainder of the line.  See [card_test.ces](https://github.com/idunmore/CESIL/blob/master/examples/card_test.ces) for an example.
+In Card mode, there are fixed-width columns for `labels` and `instructions` (8 characters each), and then `operands` can be as wide as the remainder of the line.  See [card_test.ces](https://github.com/idunmore/cesil/blob/master/examples/card_test.ces) for an example.
 
 This means it is possible to have code that works in one mode but not the other.  For example:
 
@@ -186,9 +186,15 @@ A couple of reasons ...
 
 # Implementation Approach & Theory of Operation
 
-The real/primary implementation here is [src/CESIL.py](https://github.com/idunmore/CESIL/blob/master/src/CESIL.py).  This is an evolution of earlier, experimental, "[prototype](https://github.com/idunmore/CESIL/blob/master/README.md#prototypes)" versions that makes major changes to the internal implementation of CESIL instructions, how they are enumerated and, most importantly, how they are executed.
+There are two current versions of the CESIL interpreter in this repository, both of which have the same fundamental implementation, approach and theory of operation - they differ *only* in how they are organized from a file/project perspective:
 
-In *common* with the prototypes, particularly [prototypes/CESILPy.py](https://github.com/idunmore/CESIL/blob/master/prototypes/CESILPy.py), is the parsing logic, command line interface, general structure and some of the "extension" instructions.  However, here the extensibility of the supported instruction set is made extremely easy, and the execution process is more generalized to allow simple, and flexible, composition, of new instructions and/or the addition of new language features:
+ - A single, "legacy", all-in-one, script that can be run as-is without installing anything other than it's dependencies, using standard Python and PIP tooling (as per the instructions under the "Installing" section.   
+   
+ - The "current" version, which can be built and run using [uv](https://docs.astral.sh/uv/) and/or built with uv and installed with [pipx](https://pipx.pypa.io/stable/installation/) (and which I intend to post to [PYPI](https://pypi.org)).
+
+The real/primary implementation, in single-file form, is [legacy/cesil.py](https://github.com/idunmore/cesil/blob/master/legacy/cesil.py).  This is an evolution of earlier, experimental, "[prototype](https://github.com/idunmore/cesil/blob/master/README.md#prototypes)" versions that makes major changes to the internal implementation of CESIL instructions, how they are enumerated and, most importantly, how they are executed.
+
+In *common* with the prototypes, particularly [prototypes/CESILPy.py](https://github.com/idunmore/cesil/blob/master/prototypes/CESILPy.py), is the parsing logic, command line interface, general structure and some of the "extension" instructions.  However, here the extensibility of the supported instruction set is made extremely easy, and the execution process is more generalized to allow simple, and flexible, composition, of new instructions and/or the addition of new language features:
 
 ## Defining CESIL Instructions
 To implement an instruction for our CESIL interpreter, we provide a simple Python method, as a "protected" member of the `CESIL` class, which can then manipulate the state of that class to provide its behavior.  The example below implements the "HALT" instruction:  
@@ -265,11 +271,11 @@ The `run()` loop is relatively simple.  It steps through the items in the CESIL 
 
 The prototypes/ folder contains the source code for my **earlier**, experimental, implementations of CESIL in Python:
 
-* [prototypes/CESIL.py](https://github.com/idunmore/CESIL/blob/master/prototypes/CESIL.py)
+* [prototypes/CESIL.py](https://github.com/idunmore/cesil/blob/master/prototypes/CESIL.py)
 
   More of an exploratory implementation, which doesn't follow any particular Python coding convention or standard - so, for example, long lines are common (and artificially shorten the apparent [SLOC](https://en.wikipedia.org/wiki/Source_lines_of_code) for the implementation).  There's no command-line; so running code requires changing the source to point to the file to be executed.  It is largely monolithic, with just one class for the CESIL interpreter and another to represent a line of code.   It's not particularly "Pythonic" (doesn't necessarily do things in a way that it is idiomatic to general Python code).  Really just a quick-and-dirty test-bed for the approach and some logic.
 
-* [prototypes/CESILPlus.py](https://github.com/idunmore/CESIL/blob/master/prototypes/CESILPlus.py)
+* [prototypes/CESILPlus.py](https://github.com/idunmore/cesil/blob/master/prototypes/CESILPlus.py)
 
     This adds a proper command line, allowing CESIL code to be run from the console, [optional "extension" instructions](https://github.com/idunmore/CESIL#cesil--cesil-plus), and a simple "debugger" - which lets yo see the overall state of the CESIL execution environment, including variable values and STACK contents, as code runs.
   
@@ -277,9 +283,9 @@ The prototypes/ folder contains the source code for my **earlier**, experimental
 
   Line lengths are now limited, and an overall more "Pythonic" approach is taken to the implementation.
 
-* [prototypes/CESILPy.py](https://github.com/idunmore/CESIL/blob/master/prototypes/CESILPy.py)
+* [prototypes/CESILPy.py](https://github.com/idunmore/cesil/blob/master/prototypes/CESILPy.py)
 
-  This is largely a restructuring of the above [CESILPlus.py](https://github.com/idunmore/CESIL/blob/master/prototypes/CESILPlus.py) implementation.  It moves the `Program` and `State` data back into the main CESIL class, since they were just groups of variables anyway.  Other features and functions remain the same.
+  This is largely a restructuring of the above [CESILPlus.py](https://github.com/idunmore/cesil/blob/master/prototypes/CESILPlus.py) implementation.  It moves the `Program` and `State` data back into the main CESIL class, since they were just groups of variables anyway.  Other features and functions remain the same.
 
   Some adjustments to properly observe the PEP8 conventions were made, some functions/methods were simplified (or made "less clever") or, again, my more "Pythonic".
 
@@ -292,7 +298,7 @@ Executing the code, in the prototypes, involves moving an "instruction pointer" 
 This is a "simple" or, at least, *easily readable,* way to implement the execution process (the `run()` method).  For the 14 instructions that comprise the CESIL language, it's reasonably manageable - taking a total of 45 lines.  However, the overall structure isn't very extensible; the `run()` method would rapidly become unwieldy if you added additional "extension" instructions.
 
 ## Notice to Copyright Holders
-Attempts to identify and/or contact current copyright holders for assets such as the "[CESIL Reference Card](https://github.com/idunmore/CESIL/blob/master/docs/CESIL%20Reference%20Card.pdf)" and the [CESIL "Coding Sheet"](https://github.com/idunmore/CESIL/blob/master/docs/CESIL%20Coding%20Sheet%20%28Facsimilie%29.pdf) (reproduced from scratch as a visual/content facsimilie of the original - including original copyright notice) were unsuccessful.
+Attempts to identify and/or contact current copyright holders for assets such as the "[CESIL Reference Card](https://github.com/idunmore/cesil/blob/master/docs/CESIL%20Reference%20Card.pdf)" and the [CESIL "Coding Sheet"](https://github.com/idunmore/cesil/blob/master/docs/CESIL%20Coding%20Sheet%20%28Facsimilie%29.pdf) (reproduced from scratch as a visual/content facsimilie of the original - including original copyright notice) were unsuccessful.
 
 I believe my usage/recreation of these assets falls under fair-use, for non-profit educational and/or documentary/editorial purposes.
 

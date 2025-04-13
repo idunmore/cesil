@@ -1,0 +1,31 @@
+[project]
+name = "cesil"
+version = "0.9.4"
+description = "CESIL (and CESIL 'Plus') interpreter"
+readme = "README.md"
+authors = [
+    { name = "idunmore", email = "62761638+idunmore@users.noreply.github.com" }
+]
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+keywords = ["cesil", "ces", "icl", "interpreter"]
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python"
+]
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.1.8",
+]
+
+[project.scripts]
+cesil = "cesil.cli:cesilplus"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.urls]
+Homepage = "https://cesil.org"
+Respository = "https://github.com/idunmore/cesil"

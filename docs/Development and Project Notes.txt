@@ -1,4 +1,4 @@
-Usage: CESIL.py [OPTIONS] SOURCE_FILE
+Usage: cesil.py [OPTIONS] SOURCE_FILE
 
   CESILPlus - CESIL Interpreter (w/ optional language extentions).
 
