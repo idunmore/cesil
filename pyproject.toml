@@ -28,4 +28,4 @@ build-backend = "hatchling.build"
 
 [project.urls]
 Homepage = "https://cesil.org"
-Respository = "https://github.com/idunmore/cesil"
+Repository = "https://github.com/idunmore/cesil"
