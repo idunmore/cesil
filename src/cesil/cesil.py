@@ -249,6 +249,10 @@ class CESIL():
                     # Validate and get the label, literal or variable
                     operand = self._get_lab_lit_var(
                         op_type, potential_operand, line_number)
+        else:
+            # Instruction is invalid
+            raise CESILException(
+                    line_number, 'Illegal instruction', parts[current_part])
 
         return CodeLine(label, instruction, operand)
 
