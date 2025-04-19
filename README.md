@@ -33,13 +33,50 @@ There are two modes of operation:
  - **INC/DEC instructions**; increment (`INC`) or decrement (`DEC`) the value in the ACCUMULATOR by 1.
  
 
- ## Installing
+## Installing
 
-* Install Python 3.13.3 or later (may work with earlier versions, provided they have built-in type-hint support, but not tested).
+For all installation options, the first step is to install [Python 3.13.3](python.org) or later (may work with earlier versions, provided they have built-in type-hint support, but not tested).
+
+### Install via PIP
+
+If you just want to run CESIL or CESIL programs, you can install via pip:
+
+Run:
+
+    pip install cesil
+
+Run:
+
+    cesil --version
+
+You should see something like:
+
+    cesil.py, version 1.0.0
+    
+### Install via PIPX
+
+You can install CESIL in an isolated environment (recommended) using [pipx](https://pipx.pypa.io/stable/).
+
+See the [installation instructions](https://pipx.pypa.io/stable/) for pipx, and then:
+
+Run:
+
+    pipx install cesil
+
+Run:
+
+    cesil --version
+
+You should see something like:
+
+    cesil.py, version 1.0.0
+
+### Install for Manual/Source Level Usages:
+
 * Clone the repository, **or** download [legacy/cesil.py](https://github.com/idunmore/cesil/blob/master/legacy/cesil.py) and [requirements.txt](https://github.com/idunmore/cesil/blob/master/legacy/requirements.txt)
 * Run the following command (in the directory you downloaded the above into):
-
-> 
+ 
+>
     pip install -r requirements.txt
     
 Run:
@@ -48,7 +85,7 @@ Run:
 
 You should see something like:
 
-    cesil.py, version 0.9.4
+    cesil.py, version 1.0.0
 
 If not, either you don't have Python installed correctly (most likely this is a path issue) or the dependencies (per requirements.txt) did not install.
 
@@ -56,13 +93,24 @@ If not, either you don't have Python installed correctly (most likely this is a 
 
 Usage is simple:
 
+*If you installed via pip or pipx:*
+
+    cesil filename
+
+*If you installed manually or are running source directly:*
+
     python3 cesil.py filename
 
 This will run the CESIL program contained in the file "filename".  Any output will be displayed on the console.
 
 For full usage details, enter:
 
+    cesil --help
+
+or:
+
     python3 cesil.py --help
+
 
 That will display the complete built-in help, along with options:
 

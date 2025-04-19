@@ -16,7 +16,7 @@ from .cesil import CESILException
               help='Debug mode/verbosity level.')
 @click.option('-p', '--plus', is_flag=True, default=False,
               help='Enables "plus" mode language extensions.')
-@click.version_option('0.9.5')
+@click.version_option('1.0.0')
 @click.argument('source_file', type=click.Path(exists=True))
 def cesilplus(source: str, debug: int, plus: bool, source_file: str):
     """CESILPlus - CESIL Interpreter (w/ optional language extentions).
