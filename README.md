@@ -1,6 +1,6 @@
 # CESIL
 
-[![Static Badge](https://img.shields.io/badge/cesil-cesil?label=%F0%9F%85%B2&color=orange&link=https%3A%2F%2Fcesil.org)](https://cesil.org)&nbsp;![PyPI - Version](https://img.shields.io/pypi/v/cesil?pypiBaseUrl=https%3A%2F%2Fpypi.org&color=blue&link=https%3A%2F%2Fpypi.org%2Fproject%2Fcesil)&nbsp;![GitHub License](https://img.shields.io/github/license/idunmore/cesil?color=green)&nbsp;![Static Badge](https://img.shields.io/badge/python-3.13-blue)
+[![Static Badge](https://img.shields.io/badge/cesil-cesil?label=%F0%9F%85%B2&color=orange&link=https%3A%2F%2Fcesil.org)](https://cesil.org)&nbsp;[![PyPI - Version](https://img.shields.io/pypi/v/cesil?pypiBaseUrl=https%3A%2F%2Fpypi.org&color=blue&link=https%3A%2F%2Fpypi.org%2Fproject%2Fcesil)](https://pypi.org/project/cesil)&nbsp;[![GitHub License](https://img.shields.io/github/license/idunmore/cesil?color=green)](https://github/idunmore/cesil/LICENSE)&nbsp;![Static Badge](https://img.shields.io/badge/python-3.13-blue)
 
 A [CESIL](https://cesil.org) interpreter written in Python, intended as a "Language Preservation" project.
 
