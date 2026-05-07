@@ -2,6 +2,8 @@
 
 [![Static Badge](https://img.shields.io/badge/cesil-cesil?label=%F0%9F%85%B2&color=orange&link=https%3A%2F%2Fcesil.org)](https://cesil.org)&nbsp;[![PyPI - Version](https://img.shields.io/pypi/v/cesil?pypiBaseUrl=https%3A%2F%2Fpypi.org&color=blue&link=https%3A%2F%2Fpypi.org%2Fproject%2Fcesil)](https://pypi.org/project/cesil)&nbsp;[![GitHub License](https://img.shields.io/github/license/idunmore/cesil?color=green)](https://github.com/idunmore/cesil/blob/master/LICENSE)&nbsp;![Static Badge](https://img.shields.io/badge/python-3.13-blue)
 
+![cesil](banner.png)
+
 A [CESIL](https://cesil.org) interpreter written in Python, intended as a "Language Preservation" project.
 
 CESIL is the Computer Education in Schools Instruction Language.  It was developed as an introductory instructional language, targeted at British secondary school students (ages 11 to 16).  It was developed by [International Computers Limited](https://en.wikipedia.org/wiki/International_Computers_Limited) ([ICL](https://en.wikipedia.org/wiki/International_Computers_Limited)), a sort of "British version of IBM", as part of the "Computer Education in Schools" (CES) project, and was introduced in 1974.
